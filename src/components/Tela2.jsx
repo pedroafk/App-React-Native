@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Image, Button, ImageBackground, StyleSheet, Modal, Text, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Tela2(props) {
@@ -30,36 +29,15 @@ export default function Tela2(props) {
     >
       <View style={styles.container}>
         <View style={styles.row}>
-          <View style={styles.column}>
-            {images.slice(0, 2).map((image, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => openModal(image.source, image.description)}
-              >
-                <Image style={styles.image} source={image.source} />
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.column}>
-            {images.slice(2, 4).map((image, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => openModal(image.source, image.description)}
-              >
-                <Image style={styles.image} source={image.source} />
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.column}>
-            {images.slice(4, 6).map((image, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => openModal(image.source, image.description)}
-              >
-                <Image style={styles.image} source={image.source} />
-              </TouchableOpacity>
-            ))}
-          </View>
+          {images.map((image, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.imageWrapper}
+              onPress={() => openModal(image.source, image.description)}
+            >
+              <Image style={styles.image} source={image.source} />
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
 
@@ -94,24 +72,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginHorizontal: 18,
-    marginTop: 50,
+    padding: 20,
   },
   row: {
     flexDirection: "row",
+    flexWrap: 'wrap',
     justifyContent: "space-between",
-    marginBottom: 20,
   },
-  column: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between",
+  imageWrapper: {
+    flexBasis: '48%', // Adjust the percentage to change the number of columns
+    marginBottom: 20,
   },
   image: {
     width: '100%',
     height: 150,
     resizeMode: "cover",
-    marginBottom: 10,
     borderRadius: 10,
   },
   modalContainer: {
@@ -120,7 +95,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  //Borda do Modal da imagem
   modalContent: {
     backgroundColor: '#fff',
     borderRadius: 10,

@@ -1,22 +1,24 @@
-import { View, Text, Button, ImageBackground, StyleSheet, Image } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, Button, ImageBackground, StyleSheet, Image } from 'react-native';
+import React from 'react';
 
 export default function Tela1(props) {
   return (
     <ImageBackground 
       style={styles.backgroundImage} 
-      source={require("./assets/bg.jpg")}>
-
+      source={require("./assets/bg.jpg")}
+    >
       <View style={styles.container}>
         <Image source={require('./assets/avatar.jpg')} style={styles.avatar} />
         <Text style={styles.username}>Pedro Figueiredo</Text>
         <Text style={styles.description}>Estudante de Engenharia da Computação</Text>
-        <Button title="Ver Fotos" onPress={() => {props.navigation.navigate("Fotos")}}/>
+        <View style={styles.buttonContainer}>
+          <Button title="Ver Fotos" onPress={() => { props.navigation.navigate("Fotos") }} />
+          <View style={styles.buttonSpacer} />
+          <Button title="Ver Vídeos" onPress={() => { props.navigation.navigate("Vídeos") }} />
+        </View>
       </View>
-
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -45,5 +47,13 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     marginBottom: 20
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonSpacer: {
+    width: 10,
   }
 });
