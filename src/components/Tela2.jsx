@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   imageWrapper: {
-    flexBasis: '48%', // Adjust the percentage to change the number of columns
+    flexBasis: '48%',
     marginBottom: 20,
   },
   image: {

@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   videoWrapper: {
-    flexBasis: '48%', // Adjust the percentage to change the number of columns
+    flexBasis: '48%',
     marginBottom: 20,
   },
   videoThumbnail: {
