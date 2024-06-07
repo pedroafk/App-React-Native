@@ -9,8 +9,12 @@ export default function Tela3(props) {
   const [videoDescription, setVideoDescription] = useState('');
 
   const videos = [
-    { source: require("./assets/carnaval.mp4"), description: "Show do Gustavo Lima" },
-    { source: require("./assets/shownenhumdenos.mp4"), description: "Show do Nenhum De Nós" },
+    { source: require("./assets/video1.mp4"), description: "Praia" },
+    { source: require("./assets/video2.mp4"), description: "Litoral" },
+    { source: require("./assets/video3.mp4"), description: "Cidade" },
+    { source: require("./assets/video4.mp4"), description: "Surf" },
+    { source: require("./assets/video5.mp4"), description: "Céu" },
+    { source: require("./assets/video6.mp4"), description: "Rio" },
   ];
 
   const openModal = (video, description) => {
