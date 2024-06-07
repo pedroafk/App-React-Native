@@ -10,7 +10,7 @@ export default function Tela1(props) {
       <View style={styles.container}>
         <Image source={require('./assets/avatar.jpg')} style={styles.avatar} />
         <Text style={styles.username}>Pedro Figueiredo</Text>
-        <Text style={styles.description}>Estudante de Engenharia da Computação</Text>
+        <Text style={styles.description}>Engenheiro da Computação</Text>
         <View style={styles.buttonContainer}>
           <Button title="Ver Fotos" onPress={() => { props.navigation.navigate("Fotos") }} />
           <View style={styles.buttonSpacer} />
