@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import Tela1 from './src/components/Tela1';
-import Tela2 from './src/components/Tela2';
-import Tela3 from './src/components/Tela3';
+import Tela1 from './src/components/TelaPerfil';
+import Tela2 from './src/components/TelaFotos';
+import Tela3 from './src/components/TelaVideos';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const navStack = createNativeStackNavigator();
