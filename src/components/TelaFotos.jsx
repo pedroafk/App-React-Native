@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, Button, ImageBackground, StyleSheet, Modal, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Tela2(props) {
+export default function Tela2() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageDescription, setImageDescription] = useState('');

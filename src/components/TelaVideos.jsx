@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Button, ImageBackground, StyleSheet, Modal, Text, TouchableOpacity, Image } from 'react-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { VideoContext } from './context/AppContext';
 
 export default function Tela3(props) {
+
+  const {id, name, description, thumbnail, videos, atualizacao, setId, setName, setDescription, setThumbnail, setVideos, setAtualizacao, buscarVideos, gravarDados } = useContext(VideoContext);
+
+  useEffect(() => {
+    const fetchData = async () =>{
+      await buscarVideos();
+    }
+    fetchData();
+  }, [])
+
+  console.log(videos);
+
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [videoDescription, setVideoDescription] = useState('');
 
-  const videos = [
+  const videosApp = [
     { source: require("./assets/video1.mp4"), description: "Praia", thumbnail: require("./assets/video1.jpg") },
     { source: require("./assets/video2.mp4"), description: "Litoral", thumbnail: require("./assets/video2.jpg") },
     { source: require("./assets/video3.mp4"), description: "Cidade", thumbnail: require("./assets/video3.jpg") },
@@ -30,7 +44,7 @@ export default function Tela3(props) {
     >
       <View style={styles.container}>
         <View style={styles.row}>
-          {videos.map((video, index) => (
+          {videosApp.map((video, index) => (
             <TouchableOpacity
               key={index}
               style={styles.videoWrapper}
