@@ -3,23 +3,22 @@ import React, { createContext, useState } from "react";
 
 export const VideoContext = createContext({});
 
-export default function VideoProvider({ children }){
+export default function VideoProvider({ children }) {
 
     //Minha URL do Vercel
     const url = "https://backendmobile.vercel.app/videos/";
 
-    function buscarVideos(){
-        fetch(url)
-            .then((respFetch) => respFetch.json())
-            .then((respJson) => setVideos(respJson))
+    function buscarVideos() {
+        axios.get(url)
+            .then((response) => { console.log(response.data); setVideos(response.data) })
             .catch((erro) => console.warn(erro))
         //console.log("passou no getVideos", videos);
     }
 
     function gravarDados() {
-        console.log("gravar dados" , url + id)
+        console.log("gravar dados", url + id)
 
-        if(id){
+        if (id) {
             axios.put(url + id, {
                 name: name,
                 description: description,
@@ -28,10 +27,10 @@ export default function VideoProvider({ children }){
         }
     }
 
-    function atualizaListaVideosEditado(response){
+    function atualizaListaVideosEditado(response) {
 
         let id = response.data.identificador;
-        const {name, description, thumbnail} = JSON.parse(response.config.data);
+        const { name, description, thumbnail } = JSON.parse(response.config.data);
         const index = videos.findIndex(item => item.id == id);
 
         let auxVideos = videos;
@@ -60,8 +59,8 @@ export default function VideoProvider({ children }){
     const [videos, setVideos] = useState([]);
     const [atualizacao, setAtualizacao] = useState([]);
 
-    return(
-        <VideoContext.Provider value={{id, name, description, thumbnail, videos, atualizacao, setId, setName, setDescription, setThumbnail, setVideos, setAtualizacao, buscarVideos, gravarDados }}>
+    return (
+        <VideoContext.Provider value={{ id, name, description, thumbnail, videos, atualizacao, setId, setName, setDescription, setThumbnail, setVideos, setAtualizacao, buscarVideos, gravarDados }}>
             {children}
         </VideoContext.Provider>
     )
