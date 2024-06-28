@@ -5,10 +5,10 @@ export default function Tela1(props) {
   return (
     <ImageBackground 
       style={styles.backgroundImage} 
-      source={require("./assets/bg.jpg")}
+      source={require("./assets/perfil/bg.jpg")}
     >
       <View style={styles.container}>
-        <Image source={require('./assets/avatar.jpg')} style={styles.avatar} />
+        <Image source={require('./assets/perfil/avatar.jpg')} style={styles.avatar} />
         <Text style={styles.username}>Pedro Figueiredo</Text>
         <Text style={styles.description}>Engenheiro da Computação</Text>
         <View style={styles.buttonContainer}>
@@ -16,6 +16,8 @@ export default function Tela1(props) {
           <View style={styles.buttonSpacer} />
           <Button title="Ver Vídeos" onPress={() => { props.navigation.navigate("Vídeos") }} />
         </View>
+        <View style={styles.buttonSpacerVertical} />
+        <Button title="Seguidores" onPress={() => { props.navigation.navigate("Seguidores") }} />
       </View>
     </ImageBackground>
   );
@@ -55,5 +57,8 @@ const styles = StyleSheet.create({
   },
   buttonSpacer: {
     width: 10,
+  },
+  buttonSpacerVertical: {
+    height: 10,
   }
 });

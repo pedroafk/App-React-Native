@@ -1,67 +1,90 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 
-export const VideoContext = createContext({});
+export const UsersappContext = createContext({});
 
-export default function VideoProvider({ children }) {
+export default function UsersappProvider({ children }) {
 
     //Minha URL do Vercel
-    const url = "https://backendmobile.vercel.app/videos/";
+    const url = "https://backendmobile.vercel.app/usersapp/";
 
-    function buscarVideos() {
-        axios.get(url)
-            .then((response) => { console.log(response.data); setVideos(response.data) })
+    function buscarUsersapp() {
+        fetch(url)
+            .then((respFetch) => respFetch.json())
+            .then((respJson) => setUsersapp(respJson))
             .catch((erro) => console.warn(erro))
-        //console.log("passou no getVideos", videos);
+        console.log("passou no getUsersapp", usersapp);
     }
 
     function gravarDados() {
         console.log("gravar dados", url + id)
-
         if (id) {
             axios.put(url + id, {
-                name: name,
-                description: description,
-                thumbnail, thumbnail,
-            }).then((resp) => atualizaListaVideosEditado(resp)).catch((erro) => console.log(erro));
+                username: username,
+                nome: nome,
+                status: (status ? status : null),
+            }).then((resp) => atualizaListaUsersappEditado(resp)).catch((erro) => console.log(erro));
+        } else {
+            axios.post(url, {
+                username: username,
+                nome: nome,
+                status: (status ? status : null),
+            }).then((resp) => atualizaListaUsersappNovo(resp)).catch((erro) => console.log(erro));
         }
     }
 
-    function atualizaListaVideosEditado(response) {
+    function atualizaListaUsersappEditado(response) {
 
         let id = response.data.identificador;
-        const { name, description, thumbnail } = JSON.parse(response.config.data);
-        const index = videos.findIndex(item => item.id == id);
+        const { username, nome, status } = JSON.parse(response.config.data);
+        const index = usersapp.findIndex(item => item.id == id);
 
-        let auxVideos = videos;
+        let users = usersapp;
 
-        auxVideos[index].name = name;
-        auxVideos[index].description = description;
-        auxVideos[index].thumbnail = thumbnail;
-        setVideos(auxVideos);
+        users[index].username = username;
+        users[index].nome = nome;
+        users[index].status = (status ? status : "");
+        setUsersapp(users);
 
-        let video = {};
-        video.id = id;
-        video.name = name;
-        video.description = description;
-        video.thumbnail = thumbnail;
-        setAtualizacao(video);
+        let usuario = {};
+        usuario.id = id;
+        usuario.username = username;
+        usuario.nome = nome;
+        usuario.status = status;
+        setAtualizacao(usuario);
 
     }
 
-    //Dados da Tabela
-    const [id, setId] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [thumbnail, setThumbnail] = useState("");
+    function atualizaListaUsersappNovo(response) {
+        console.log("atualizaListaUsersappNovo", response.data);
 
-    //Tabela
-    const [videos, setVideos] = useState([]);
+        let { id, username, nome, status } = response.data;
+        let obj = { "id": id, "username": username, "nome": nome, "status": status };
+        let users = usersapp;
+        users.push(obj);
+
+        setUsersapp(users);
+        setAtualizacao(obj);
+    }
+
+    function apagarUsersapp(cod) {
+        axios.delete(url + cod)
+            .then(() => {
+                setUsersapp(usersapp.filter(item => item.id !== cod));
+            })
+            .catch((erro) => console.log(erro))
+    }
+
+    const [id, setId] = useState("");
+    const [username, setUsername] = useState("");
+    const [nome, setNome] = useState("");
+    const [status, setStatus] = useState("");
+    const [usersapp, setUsersapp] = useState([]);
     const [atualizacao, setAtualizacao] = useState([]);
 
     return (
-        <VideoContext.Provider value={{ id, name, description, thumbnail, videos, atualizacao, setId, setName, setDescription, setThumbnail, setVideos, setAtualizacao, buscarVideos, gravarDados }}>
+        <UsersappContext.Provider value={{ id, username, nome, status, usersapp, atualizacao, setId, setUsername, setNome, setStatus, setUsersapp, setAtualizacao, gravarDados, buscarUsersapp, apagarUsersapp }} >
             {children}
-        </VideoContext.Provider>
+        </UsersappContext.Provider>
     )
 }

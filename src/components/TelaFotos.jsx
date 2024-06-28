@@ -8,12 +8,12 @@ export default function Tela2() {
   const [imageDescription, setImageDescription] = useState('');
 
   const images = [
-    { source: require("./assets/image1.jpg"), description: "Conexão com a natureza 🍃" },
-    { source: require("./assets/image2.jpg"), description: "Calangodum 🦎" },
-    { source: require("./assets/image3.jpg"), description: "Com saudades da piscina já 🏊🏻‍♂️🏖" },
-    { source: require("./assets/image4.jpg"), description: "Sinuca e Rock 🎱🤘🏻" },
-    { source: require("./assets/image5.jpg"), description: "Piscina com os Amigos 🏊🏻‍♂️" },
-    { source: require("./assets/image6.jpg"), description: "Caipira sem ser vulgar ✌" }
+    { source: require("./assets/perfil/image1.jpg"), description: "Conexão com a natureza 🍃" },
+    { source: require("./assets/perfil/image2.jpg"), description: "Calangodum 🦎" },
+    { source: require("./assets/perfil/image3.jpg"), description: "Com saudades da piscina já 🏊🏻‍♂️🏖" },
+    { source: require("./assets/perfil/image4.jpg"), description: "Sinuca e Rock 🎱🤘🏻" },
+    { source: require("./assets/perfil/image5.jpg"), description: "Piscina com os Amigos 🏊🏻‍♂️" },
+    { source: require("./assets/perfil/image6.jpg"), description: "Caipira sem ser vulgar ✌" }
   ];
 
   const openModal = (image, description) => {
@@ -25,7 +25,7 @@ export default function Tela2() {
   return (
     <ImageBackground 
       style={styles.backgroundImage} 
-      source={require("./assets/bg.jpg")}
+      source={require("./assets/perfil/bg.jpg")}
     >
       <View style={styles.container}>
         <View style={styles.row}>

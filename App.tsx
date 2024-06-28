@@ -1,29 +1,34 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import Tela1 from './src/components/TelaPerfil';
-import Tela2 from './src/components/TelaFotos';
-import Tela3 from './src/components/TelaVideos';
+import TelaPerfil from './src/components/TelaPerfil';
+import TelaFotos from './src/components/TelaFotos';
+import TelaVideos from './src/components/TelaVideos';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import VideoProvider from './src/components/context/AppContext';
+import UsersappProvider from './src/components/context/AppContext';
+import TelaSeguidores from './src/components/TelaSeguidores';
 
 const navStack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <VideoProvider>
+      <UsersappProvider>
         <navStack.Navigator>
           <navStack.Screen
             name='Perfil'
-            component={Tela1} />
+            component={TelaPerfil} />
           <navStack.Screen
             name='Fotos'
-            component={Tela2} />
+            component={TelaFotos} />
           <navStack.Screen
             name='Vídeos'
-            component={Tela3} />
+            component={TelaVideos} />
+          <navStack.Screen
+            name='Seguidores'
+            component={TelaSeguidores}
+          />
         </navStack.Navigator>
-      </VideoProvider>
+      </UsersappProvider>
     </NavigationContainer>
   )
 }

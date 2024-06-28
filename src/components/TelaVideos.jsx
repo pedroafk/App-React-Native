@@ -2,33 +2,20 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Button, ImageBackground, StyleSheet, Modal, Text, TouchableOpacity, Image } from 'react-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { VideoContext } from './context/AppContext';
 
 export default function Tela3(props) {
-
-  const {id, name, description, thumbnail, videos, atualizacao, setId, setName, setDescription, setThumbnail, setVideos, setAtualizacao, buscarVideos, gravarDados } = useContext(VideoContext);
-
-  useEffect(() => {
-    const fetchData = async () =>{
-      await buscarVideos();
-    }
-    fetchData();
-  }, [])
-
-  console.log(videos);
-
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [videoDescription, setVideoDescription] = useState('');
 
   const videosApp = [
-    { source: require("./assets/video1.mp4"), description: "Praia", thumbnail: require("./assets/video1.jpg") },
-    { source: require("./assets/video2.mp4"), description: "Litoral", thumbnail: require("./assets/video2.jpg") },
-    { source: require("./assets/video3.mp4"), description: "Cidade", thumbnail: require("./assets/video3.jpg") },
-    { source: require("./assets/video4.mp4"), description: "Surf", thumbnail: require("./assets/video4.jpg") },
-    { source: require("./assets/video5.mp4"), description: "Céu", thumbnail: require("./assets/video5.jpg") },
-    { source: require("./assets/video6.mp4"), description: "Rio", thumbnail: require("./assets/video6.jpg") },
+    { source: require("./assets/perfil/video1.mp4"), description: "Praia", thumbnail: require("./assets/perfil/video1.jpg") },
+    { source: require("./assets/perfil/video2.mp4"), description: "Litoral", thumbnail: require("./assets/perfil/video2.jpg") },
+    { source: require("./assets/perfil/video3.mp4"), description: "Cidade", thumbnail: require("./assets/perfil/video3.jpg") },
+    { source: require("./assets/perfil/video4.mp4"), description: "Surf", thumbnail: require("./assets/perfil/video4.jpg") },
+    { source: require("./assets/perfil/video5.mp4"), description: "Céu", thumbnail: require("./assets/perfil/video5.jpg") },
+    { source: require("./assets/perfil/video6.mp4"), description: "Rio", thumbnail: require("./assets/perfil/video6.jpg") },
   ];
 
   const openModal = (video, description) => {
@@ -40,7 +27,7 @@ export default function Tela3(props) {
   return (
     <ImageBackground 
       style={styles.backgroundImage} 
-      source={require("./assets/bg.jpg")}
+      source={require("./assets/perfil/bg.jpg")}
     >
       <View style={styles.container}>
         <View style={styles.row}>
