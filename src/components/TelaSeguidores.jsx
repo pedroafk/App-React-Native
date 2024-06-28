@@ -1,5 +1,5 @@
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
 import React, { useContext, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
 import { UsersappContext } from './context/AppContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ListItem } from '@rneui/base';
@@ -11,7 +11,6 @@ export default function TelaSeguidores() {
         buscarUsersapp();
     }, []);
 
-    // Função para obter uma URL específica baseada no username
     const getPhotoUrlByUsername = (username) => {
         switch (username) {
             case 'walter_white':
@@ -70,40 +69,61 @@ export default function TelaSeguidores() {
 
             case 'john_watson':
                 return 'https://static.wikia.nocookie.net/thesherlock/images/7/7a/29510_martin-freeman-sherlock.jpg/revision/latest?cb=20131220204522';
-
+                
             default:
-                return 'https://st3.depositphotos.com/4111759/13425/v/1600/depositphotos_134255588-stock-illustration-empty-photo-of-male-profile.jpg'; // URL padrão ou tratamento para casos não previstos
+                return 'https://st3.depositphotos.com/4111759/13425/v/1600/depositphotos_134255588-stock-illustration-empty-photo-of-male-profile.jpg';
         }
     };
 
     return (
-        <SafeAreaView>
-            <FlatList
-                data={usersapp}
-                extraData={atualizacao}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => (
-                    <ListItem bottomDivider>
-                        <Image
-                            source={{ uri: getPhotoUrlByUsername(item.username.toLowerCase()) }} // Obtém a URL baseada no username
-                            style={styles.avatar}
-                        />
-                        <ListItem.Content style={styles.item}>
-                            <ListItem.Title>{item.username}</ListItem.Title>
-                            <ListItem.Subtitle>{item.nome}</ListItem.Subtitle>
-                            <Text>{item.status}</Text>
-                        </ListItem.Content>
-                    </ListItem>
-                )}
-            />
-        </SafeAreaView>
+        <ImageBackground
+            style={styles.backgroundImage}
+            source={require('./assets/perfil/bg.jpg')}
+        >
+            <SafeAreaView style={styles.container}>
+                <ScrollView style={styles.scrollView}>
+                    {usersapp.map((item, index) => (
+                        <ListItem key={item.id} containerStyle={index === 0 ? styles.firstItem : styles.item}>
+                            <Image
+                                source={{ uri: getPhotoUrlByUsername(item.username.toLowerCase()) }}
+                                style={styles.avatar}
+                            />
+                            <ListItem.Content style={styles.content}>
+                                <ListItem.Title>{item.username}</ListItem.Title>
+                                <ListItem.Subtitle>{item.nome}</ListItem.Subtitle>
+                                <Text>{item.status}</Text>
+                            </ListItem.Content>
+                        </ListItem>
+                    ))}
+                </ScrollView>
+            </SafeAreaView>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
-    item: {
+    container: {
         flex: 1,
-        flexDirection: 'column',
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+    },
+    scrollView: {
+        flex: 1,
+        paddingVertical: 10,
+    },
+    firstItem: {
+        borderColor: 'black',
+        backgroundColor: 'transparent',
+    },
+    item: {
+        borderTopWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'transparent',
+    },
+    content: {
         marginLeft: 10,
     },
     avatar: {
