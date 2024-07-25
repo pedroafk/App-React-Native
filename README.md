@@ -1,4 +1,4 @@
-Trabalho para a N1 da disciplina de Desenvolvimento Mobile em React-Native.
+Projeto de Desenvolvimento Mobile em React-Native.
 
 ![TelaPerfil](https://github.com/pedroafk/App-React-Native/assets/66695236/8409fed6-312a-4f9d-b072-6483e19500d8)
 ![TelaFotos](https://github.com/pedroafk/App-React-Native/assets/66695236/58b6a69d-d46d-4f2d-bf1f-13148ee85971)
